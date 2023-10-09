@@ -31,4 +31,40 @@ class PhotosController < ApplicationController
 
     redirect_to("/photos")
   end
+
+  def create
+    input_image = params.fetch("query_image")
+    input_caption = params.fetch("query_caption")
+    input_owner_id = params.fetch("query_owner_id")
+
+    post = Photo.new
+
+    post.image = input_image
+    post.caption = input_caption
+    post.owner_id = input_owner_id
+
+    post.save
+
+    redirect_to("/photos")
+    # render({ :template => "photo_templates/create" })
+  end
+
+  def update
+    the_id = params.fetch("path_id")
+
+    matching_photos = Photo.where({ :id => the_id })
+
+    post = matching_photos.first
+
+    post.image = params.fetch("input_image")
+    post.caption = params.fetch("input_caption")
+
+    post.save
+
+    redirect_to("/photos/#{post.id}")
+
+    # render({ :template => "photo_templates/update" })
+
+  end
+
 end
