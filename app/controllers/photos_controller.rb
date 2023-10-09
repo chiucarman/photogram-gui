@@ -45,7 +45,7 @@ class PhotosController < ApplicationController
 
     post.save
 
-    redirect_to("/photos")
+    redirect_to("/photos/#{post.id}")
     # render({ :template => "photo_templates/create" })
   end
 
