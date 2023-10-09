@@ -91,3 +91,19 @@
   </table>
 
 <h3>Add a new comment</h3>
+
+<form action="/insert_comment" method="post">
+  <label for="photo_id_field">Photo ID</label>
+  <input id="photo_id_field" name="the_photo_id" type="text" value="<%= @the_photo.id %>">
+
+  <label for="author_id_field">Author ID</label>
+  <input id="author_id_field" name="the_author_id" type="text">
+
+  <label for="comment_field">Comment</label>
+  <textarea id="comment_field" name="the_comment" placeholder="Enter a comment..."></textarea>
+
+  <button>
+    Add comment
+  </button>
+
+</form>
