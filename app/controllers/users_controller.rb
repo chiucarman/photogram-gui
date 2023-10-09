@@ -15,21 +15,22 @@ class UsersController < ApplicationController
 
     @the_user = matching_usernames.first
 
-    # if the_user == nil
-    #   redirect_to("/404")
-    # else
-      render({ :template => "user_templates/show" })
-    # end
+    if @the_user == nil
+      @the_user = User.new
+
+      @the_user.username = url_username
+
+      @the_user.save
+    end
+
+    render({ :template => "user_templates/show" })
   end
 
-  def create
-    @new_user = User.new
+  def search
+    username = params.fetch("the_username")
 
-    @new_user.username = params.fetch("the_username")
+    redirect_to("/users/#{username}")
 
-    @new_user.save
-
-    render({ :template => "user_templates/create" })
   end
 
   def update
